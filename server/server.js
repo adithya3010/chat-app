@@ -1,16 +1,16 @@
+require('dotenv').config();
 const express = require('express');
 const http = require('http');
 const path = require('path');
 const socketIO = require('socket.io');
 const mongoose = require('mongoose');
 const Message = require('./models/Message');
-
 const app = express();
 const server = http.createServer(app);
 const io = socketIO(server);
 
 // MongoDB connection
-mongoose.connect('mongodb://localhost:27017/chat-app', {
+mongoose.connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 }).then(() => console.log("✅ MongoDB connected"))
